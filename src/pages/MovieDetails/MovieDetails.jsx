@@ -2,7 +2,15 @@ import { searchMoviesDetails } from '../../API/APIservice';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import poster from '../../img/no_poster.jpg';
-import { FilmTitle, GoBackButton, Img, Wrapper } from './MovieDetails.styled';
+import {
+  Description,
+  FilmTitle,
+  GenresTitle,
+  GoBackButton,
+  Img,
+  OverviewTitle,
+  Wrapper,
+} from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -25,8 +33,6 @@ export const MovieDetails = () => {
     release_date,
     overview,
     genres,
-    runtime,
-    spoken_languages,
   } = movie;
 
   let date = new Date(release_date);
@@ -47,26 +53,26 @@ export const MovieDetails = () => {
           alt={title}
           width="300"
         />
-        <FilmTitle>
-          {original_title}({date.getFullYear()})
-        </FilmTitle>
-        <ul>
-          <li>
-            <p>User Score:{vote_average.toFixed(1)}</p>
-          </li>
-          <li>
-            <h3>Overview</h3>
-          </li>
-          <li>
-            <p></p>
-          </li>
-          <li>
-            <h4>Genres</h4>
-          </li>
-          <li>
-            <p></p>
-          </li>
-        </ul>
+        <div>
+          <FilmTitle>
+            {original_title}({date.getFullYear()})
+          </FilmTitle>
+          <ul>
+            <li>
+              <Description>User Score:{vote_average.toFixed(1)}</Description>
+            </li>
+            <li>
+              <OverviewTitle>Overview</OverviewTitle>
+              <Description>{overview}</Description>
+            </li>
+            <li>
+              <GenresTitle>Genres</GenresTitle>
+              <Description>
+                {genres.map(genre => genre.name).join(' ')}
+              </Description>
+            </li>
+          </ul>
+        </div>
       </Wrapper>
     </>
   );

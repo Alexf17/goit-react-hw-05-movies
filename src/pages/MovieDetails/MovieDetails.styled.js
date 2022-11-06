@@ -31,3 +31,18 @@ export const FilmTitle = styled.h2`
   font-size: 30px;
   margin-bottom: 20px;
 `;
+
+export const OverviewTitle = styled.h3`
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+export const GenresTitle = styled.h4`
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+`;
+export const Description = styled.p`
+  font-weight: 400;
+  margin-bottom: 10px;
+`;

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../../API/APIservice';
-import { Link } from 'react-router-dom';
-import { SearchWrap } from './Movies.styled';
+import { NavLink } from 'react-router-dom';
+import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
@@ -54,23 +54,23 @@ export const Movies = () => {
       <SearchWrap>
         <SearchForm onSubmit={newQuery} />
       </SearchWrap>
-      <div>
+      <Ul>
         {films.map(film => (
-          <li key={film.id}>
-            <Link
+          <Li key={film.id}>
+            <NavLink
               id={film.id}
               to={`/movies/${film.id}`}
               state={{ from: location }}
             >
-              <img
+              <Img
                 src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
                 alt={film.title}
               />
-              {film.title}
-            </Link>
-          </li>
+              <FilmTitle>{film.title}</FilmTitle>
+            </NavLink>
+          </Li>
         ))}
-      </div>
+      </Ul>
     </>
   );
 };
