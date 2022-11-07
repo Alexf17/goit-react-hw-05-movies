@@ -1,4 +1,4 @@
-import { searchMoviesReviews } from 'api1/1apiService';
+import { searchMoviesReviews } from 'api/apiService';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Author, Li, Text, Wrap } from './Reviews.styled';

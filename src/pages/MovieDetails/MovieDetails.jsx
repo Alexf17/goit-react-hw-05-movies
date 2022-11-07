@@ -1,4 +1,4 @@
-import { searchMoviesDetails } from '../../api1/1apiService';
+import { searchMoviesDetails } from '../../api/apiService';
 import {
   Link,
   useParams,

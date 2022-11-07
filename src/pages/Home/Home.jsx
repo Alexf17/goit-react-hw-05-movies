@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { searchTrendingMovies } from '../../api1/1apiService';
+import { searchTrendingMovies } from '../../api/apiService';
 import { FilmTitle, Img, Li, Title, Ul } from './Home.styled';
 import poster from '../../img/no_poster.jpg';
 
