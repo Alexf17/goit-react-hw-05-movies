@@ -9,7 +9,7 @@ export const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchParam, setSearchParam] = useSearchParams();
   const search = searchParam.get('query') ?? '';
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [films, setFilms] = useState([]);
   const location = useLocation();
 
@@ -24,7 +24,7 @@ export const Movies = () => {
   async function getFilms(value) {
     try {
       setFilms([]);
-      setIsLoading(true);
+      // setIsLoading(true);
 
       const filmList = await searchMovies(value);
       console.log(filmList);
@@ -36,7 +36,7 @@ export const Movies = () => {
     } catch (error) {
       console.log(error);
     }
-    setIsLoading(false);
+    // setIsLoading(false);
   }
 
   useEffect(() => {

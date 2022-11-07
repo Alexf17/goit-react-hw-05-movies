@@ -28,6 +28,7 @@ export async function searchMoviesDetails(movieId) {
     const response = await axios.get(
       `/movie/${movieId}?api_key=${KEY}&language=en-US`
     );
+    console.log();
     return response.data;
   } catch (error) {
     console.log(error);
@@ -36,7 +37,7 @@ export async function searchMoviesDetails(movieId) {
 export async function searchMoviesCast(movieId) {
   try {
     const response = await axios.get(
-      `movie/${movieId}?api_key=${KEY}&language=en-US`
+      `/movie/${movieId}/credits?api_key=${KEY}&language=en-US`
     );
     return response.data.cast;
   } catch (error) {
@@ -47,8 +48,9 @@ export async function searchMoviesCast(movieId) {
 export async function searchMoviesReviews(movieId) {
   try {
     const response = await axios.get(
-      `/movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
+      `movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
     );
+    // console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.log(error);

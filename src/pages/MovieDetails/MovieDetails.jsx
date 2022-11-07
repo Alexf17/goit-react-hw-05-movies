@@ -1,5 +1,11 @@
 import { searchMoviesDetails } from '../../API/APIservice';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+  useLocation,
+  NavLink,
+  Outlet,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import poster from '../../img/no_poster.jpg';
 import {
@@ -72,8 +78,22 @@ export const MovieDetails = () => {
               </Description>
             </li>
           </ul>
+          <h3>Additional information</h3>
+          <ul>
+            <li>
+              <NavLink to="cast" state={location.state?.from ?? '/'}>
+                Cast
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="reviews" state={location.state?.from ?? '/'}>
+                Reviews
+              </NavLink>
+            </li>
+          </ul>
         </div>
       </Wrapper>
+      <Outlet />
     </>
   );
 };

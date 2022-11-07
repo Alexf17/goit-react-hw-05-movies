@@ -34,6 +34,7 @@ export const SearchForm = ({ onSubmit }) => {
           autoComplete="off"
           placeholder="Search movies???"
           onChange={changeInput}
+          value={query}
         />
       </label>
       <SubmitButton type="submit">Search</SubmitButton>
