@@ -1,4 +1,4 @@
-import { searchMoviesDetails } from '../../API/APIservice';
+import { searchMoviesDetails } from '../../api/apiService';
 import {
   Link,
   useParams,
@@ -6,7 +6,7 @@ import {
   NavLink,
   Outlet,
 } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import poster from '../../img/no_poster.jpg';
 import {
   Description,
@@ -18,7 +18,7 @@ import {
   Wrapper,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
@@ -93,7 +93,11 @@ export const MovieDetails = () => {
           </ul>
         </div>
       </Wrapper>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+
+export default MovieDetails;

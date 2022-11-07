@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { searchMovies } from '../../API/APIservice';
+import { searchMovies } from '../../api/apiService';
 import { NavLink } from 'react-router-dom';
 import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
+import poster from '../../img/no_poster.jpg';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchParam, setSearchParam] = useSearchParams();
   const search = searchParam.get('query') ?? '';
@@ -27,7 +28,6 @@ export const Movies = () => {
       // setIsLoading(true);
 
       const filmList = await searchMovies(value);
-      console.log(filmList);
       if (!filmList.length) {
         return;
       }
@@ -63,8 +63,11 @@ export const Movies = () => {
               state={{ from: location }}
             >
               <Img
-                src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-                alt={film.title}
+                src={
+                  film.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                    : poster
+                }
               />
               <FilmTitle>{film.title}</FilmTitle>
             </NavLink>
@@ -74,3 +77,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

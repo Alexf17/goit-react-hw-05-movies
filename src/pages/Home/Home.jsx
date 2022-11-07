@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { searchTrendingMovies } from '../../API/APIservice';
+import { searchTrendingMovies } from '../../api/apiService';
 import { FilmTitle, Img, Li, Title, Ul } from './Home.styled';
 import poster from '../../img/no_poster.jpg';
 
-export const Home = () => {
+const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
   const location = useLocation();
   const currentUrl = location.pathname === '/' ? 'movies/' : '';
@@ -41,3 +41,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

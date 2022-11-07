@@ -1,8 +1,8 @@
-import { searchMoviesCast } from 'API/APIservice';
+import { searchMoviesCast } from 'api/apiService';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [castList, setCastList] = useState([]);
 
@@ -23,10 +23,12 @@ export const Cast = () => {
   return (
     <div>
       <ul>
-        {castList.map(({ name }) => (
+        {castList.map(({ name, profile_path, character }) => (
           <li key={name}>{name}</li>
         ))}
       </ul>
     </div>
   );
 };
+
+export default Cast;
