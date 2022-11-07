@@ -1,4 +1,4 @@
-import { searchMoviesCast } from 'api/apiService';
+import { searchMoviesCast } from 'api1/1apiService';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 

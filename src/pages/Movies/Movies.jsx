@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { searchMovies } from '../../api/apiService';
+import { searchMovies } from '../../api1/1apiService';
 import { NavLink } from 'react-router-dom';
 import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
 import poster from '../../img/no_poster.jpg';
