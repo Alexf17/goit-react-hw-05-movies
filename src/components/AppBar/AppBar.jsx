@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { Header, NavPanel, StyledNavLink } from './AppBar.styled';
 
 export const AppBar = () => {
