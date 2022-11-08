@@ -21,6 +21,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     searchMoviesDetails(movieId).then(setMovie);
@@ -82,12 +83,12 @@ const MovieDetails = () => {
           <InfoBlockTitle>Additional information</InfoBlockTitle>
           <InfoList>
             <InfoItem>
-              <StyledNavLink to="cast" state={location.state?.from ?? '/'}>
+              <StyledNavLink to="cast" state={{ from: backLinkHref }}>
                 Cast
               </StyledNavLink>
             </InfoItem>
             <InfoItem>
-              <StyledNavLink to="reviews" state={location.state?.from ?? '/'}>
+              <StyledNavLink to="reviews" state={{ from: backLinkHref }}>
                 Reviews
               </StyledNavLink>
             </InfoItem>

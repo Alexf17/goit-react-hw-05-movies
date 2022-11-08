@@ -5,12 +5,13 @@ import { searchMovies } from '../../api/apiService';
 import { NavLink } from 'react-router-dom';
 import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
 import poster from '../../img/no_poster.jpg';
+import { Loader } from 'components/Loader/Loader';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchParam, setSearchParam] = useSearchParams();
   const search = searchParam.get('query') ?? '';
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [films, setFilms] = useState([]);
   const location = useLocation();
 
@@ -25,7 +26,7 @@ const Movies = () => {
   async function getFilms(value) {
     try {
       setFilms([]);
-      // setIsLoading(true);
+      setIsLoading(true);
 
       const filmList = await searchMovies(value);
       if (!filmList.length) {
@@ -37,7 +38,7 @@ const Movies = () => {
     } catch (error) {
       console.log(error);
     }
-    // setIsLoading(false);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -55,26 +56,30 @@ const Movies = () => {
       <SearchWrap>
         <SearchForm onSubmit={newQuery} />
       </SearchWrap>
-      <Ul>
-        {films.map(film => (
-          <Li key={film.id}>
-            <NavLink
-              id={film.id}
-              to={`/movies/${film.id}`}
-              state={{ from: location }}
-            >
-              <Img
-                src={
-                  film.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
-                    : poster
-                }
-              />
-              <FilmTitle>{film.title}</FilmTitle>
-            </NavLink>
-          </Li>
-        ))}
-      </Ul>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Ul>
+          {films.map(film => (
+            <Li key={film.id}>
+              <NavLink
+                id={film.id}
+                to={`/movies/${film.id}`}
+                state={{ from: location }}
+              >
+                <Img
+                  src={
+                    film.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                      : poster
+                  }
+                />
+                <FilmTitle>{film.title}</FilmTitle>
+              </NavLink>
+            </Li>
+          ))}
+        </Ul>
+      )}
     </>
   );
 };
