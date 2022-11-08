@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+
 import { searchTrendingMovies } from '../../api/apiService';
-import { FilmTitle, Img, Li, Title, Ul } from './Home.styled';
 import poster from '../../img/no_poster.jpg';
+import { URL } from '../../const/Url';
+
+import { FilmTitle, Img, Li, Title, Ul } from './Home.styled';
 
 const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
@@ -26,11 +29,7 @@ const Home = () => {
               to={`${currentUrl}${id}`}
             >
               <Img
-                src={
-                  poster_path
-                    ? `https://image.tmdb.org/t/p/w500${poster_path}`
-                    : { poster }
-                }
+                src={poster_path ? URL + poster_path : poster}
                 alt={title}
               ></Img>
               <FilmTitle>{title}</FilmTitle>

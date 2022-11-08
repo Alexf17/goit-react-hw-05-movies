@@ -1,6 +1,9 @@
-import { searchMoviesDetails } from '../../api/apiService';
-import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
+import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
+
+import { searchMoviesDetails } from '../../api/apiService';
+
+import { URL } from '../../const/Url';
 import poster from '../../img/no_poster.jpg';
 import {
   Description,
@@ -52,11 +55,7 @@ const MovieDetails = () => {
       <Wrapper>
         <div>
           <Img
-            src={
-              poster_path
-                ? `https://image.tmdb.org/t/p/w500${poster_path}`
-                : poster
-            }
+            src={poster_path ? URL + poster_path : poster}
             alt={title}
             width="300"
           />

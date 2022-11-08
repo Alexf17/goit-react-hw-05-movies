@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { searchMovies } from '../../api/apiService';
 import { NavLink } from 'react-router-dom';
-import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
-import poster from '../../img/no_poster.jpg';
+
 import { Loader } from 'components/Loader/Loader';
+import { SearchForm } from '../../components/SearchForm/SearchForm';
+import { searchMovies } from '../../api/apiService';
+import poster from '../../img/no_poster.jpg';
+import { URL } from '../../const/Url';
+
+import { FilmTitle, Img, Li, SearchWrap, Ul } from './Movies.styled';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -68,11 +71,8 @@ const Movies = () => {
                 state={{ from: location }}
               >
                 <Img
-                  src={
-                    film.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
-                      : poster
-                  }
+                  src={film.poster_path ? URL + film.poster_path : poster}
+                  alt={film.title}
                 />
                 <FilmTitle>{film.title}</FilmTitle>
               </NavLink>
