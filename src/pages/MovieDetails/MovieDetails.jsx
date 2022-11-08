@@ -1,11 +1,5 @@
 import { searchMoviesDetails } from '../../api/apiService';
-import {
-  Link,
-  useParams,
-  useLocation,
-  NavLink,
-  Outlet,
-} from 'react-router-dom';
+import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
 import poster from '../../img/no_poster.jpg';
 import {
@@ -14,7 +8,12 @@ import {
   GenresTitle,
   GoBackButton,
   Img,
+  InfoBlock,
+  InfoBlockTitle,
+  InfoItem,
+  InfoList,
   OverviewTitle,
+  StyledNavLink,
   Wrapper,
 } from './MovieDetails.styled';
 
@@ -50,16 +49,18 @@ const MovieDetails = () => {
       </Link>
 
       <Wrapper>
-        <Img
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/w500${poster_path}`
-              : { poster }
-          }
-          alt={title}
-          width="300"
-        />
         <div>
+          <Img
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                : poster
+            }
+            alt={title}
+            width="300"
+          />
+        </div>
+        <InfoBlock>
           <FilmTitle>
             {original_title}({date.getFullYear()})
           </FilmTitle>
@@ -78,20 +79,20 @@ const MovieDetails = () => {
               </Description>
             </li>
           </ul>
-          <h3>Additional information</h3>
-          <ul>
-            <li>
-              <NavLink to="cast" state={location.state?.from ?? '/'}>
+          <InfoBlockTitle>Additional information</InfoBlockTitle>
+          <InfoList>
+            <InfoItem>
+              <StyledNavLink to="cast" state={location.state?.from ?? '/'}>
                 Cast
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="reviews" state={location.state?.from ?? '/'}>
+              </StyledNavLink>
+            </InfoItem>
+            <InfoItem>
+              <StyledNavLink to="reviews" state={location.state?.from ?? '/'}>
                 Reviews
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+              </StyledNavLink>
+            </InfoItem>
+          </InfoList>
+        </InfoBlock>
       </Wrapper>
       <Suspense>
         <Outlet />

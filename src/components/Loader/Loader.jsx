@@ -1,4 +1,5 @@
 import { FallingLines } from 'react-loader-spinner';
+
 import { Wrap } from './Loader.styled';
 
 export const Loader = () => {

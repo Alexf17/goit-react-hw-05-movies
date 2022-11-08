@@ -29,6 +29,7 @@ const Movies = () => {
 
       const filmList = await searchMovies(value);
       if (!filmList.length) {
+        alert("Sorry, we searched but didn't find anything");
         return;
       }
 

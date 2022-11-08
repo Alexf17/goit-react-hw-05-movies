@@ -1,7 +1,9 @@
-import { searchMoviesReviews } from 'api/apiService';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Author, Li, Text, Wrap } from './Reviews.styled';
+
+import { searchMoviesReviews } from 'api/apiService';
+
+import { Author, ErrorText, Li, Text, Wrap } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -22,14 +24,20 @@ const Reviews = () => {
 
   return (
     <Wrap>
-      <ul>
-        {reviews.map(({ author, content }) => (
-          <Li key={author}>
-            <Author>{author}</Author>
-            <Text>{content}</Text>
-          </Li>
-        ))}
-      </ul>
+      {reviews.length === 0 ? (
+        <ErrorText>
+          I'm sorry, but apparently no one has written a review yet.
+        </ErrorText>
+      ) : (
+        <ul>
+          {reviews.map(({ author, content }) => (
+            <Li key={author}>
+              <Author>{author}</Author>
+              <Text>{content}</Text>
+            </Li>
+          ))}
+        </ul>
+      )}
     </Wrap>
   );
 };
